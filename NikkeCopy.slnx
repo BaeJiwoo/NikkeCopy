@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Server/">
+    <Project Path="Server/NikkeCopy.Api/NikkeCopy.Api.csproj" />
+    <Project Path="Server/NikkeCopy.Application/NikkeCopy.Application.csproj" />
+    <Project Path="Server/NikkeCopy.Domain/NikkeCopy.Domain.csproj" />
+    <Project Path="Server/NikkeCopy.Infrastructure/NikkeCopy.Infrastructure.csproj" />
+  </Folder>
+</Solution>

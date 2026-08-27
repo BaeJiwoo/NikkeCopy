@@ -1,0 +1,17 @@
+{
+  "dotnet.defaultSolution": "NikkeCopy.slnx",
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/Library": true,
+    "**/Temp": true,
+    "**/Logs": true
+  },
+  "search.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/Library": true,
+    "**/Temp": true
+  }
+}
