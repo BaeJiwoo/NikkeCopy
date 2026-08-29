@@ -11,6 +11,10 @@ Contracts/    OpenAPI 및 향후 ProtoBuf 계약
 Docs/         아키텍처, API, 개발 문서
 ```
 
+유즈케이스 문서는 [Docs/UseCases](Docs/UseCases/README.md)에서 확인할 수 있습니다.
+
+목표 배포 구성은 [Docs/Deployment.md](Docs/Deployment.md)에서 확인할 수 있습니다.
+
 ## Server Requirements
 
 - .NET 10 SDK

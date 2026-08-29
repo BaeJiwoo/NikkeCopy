@@ -1,5 +1,7 @@
 # Architecture
 
+목표 배포 환경과 기술 구성은 [Deployment](Deployment.md) 문서에서 확인한다.
+
 ```text
 Unity Client
     ↓ HTTP / JSON
