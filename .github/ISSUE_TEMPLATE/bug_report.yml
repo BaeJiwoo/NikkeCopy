@@ -68,3 +68,26 @@ body:
     attributes:
       label: Additional context
       description: Add screenshots, videos, related issues, or other useful context.
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: Select the impact of this issue.
+      options:
+        - Critical - blocks development or release
+        - High - major feature is unavailable
+        - Medium - feature works with limitations
+        - Low - minor or cosmetic issue
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched for existing issues before submitting this report.
+          required: true
+        - label: I removed secrets, tokens, and personal data from the attached logs.
+          required: true

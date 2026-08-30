@@ -10,6 +10,15 @@
 
 - 
 
+## Change type
+
+- [ ] Feature
+- [ ] Bug fix
+- [ ] Refactoring
+- [ ] Test
+- [ ] Documentation
+- [ ] Infrastructure or maintenance
+
 ## Affected areas
 
 - [ ] Client
@@ -24,11 +33,31 @@
 
 1. 
 
+## Test results
+
+<!-- List the commands, test cases, or manual checks performed and their results. -->
+
+| Check | Result |
+| --- | --- |
+| Build | Not run |
+| Automated tests | Not run |
+| Manual verification | Not run |
+
+## Compatibility and deployment
+
+- Breaking change: No
+- API contract changed: No
+- Database or migration changed: No
+- Configuration or secret changed: No
+
+<!-- Explain every "Yes" answer, including migration or deployment steps. -->
+
 ## Checklist
 
 - [ ] Relevant builds pass.
 - [ ] I ran or tested the changed behavior.
 - [ ] I checked the impact on existing functionality.
+- [ ] New or changed behavior has appropriate test coverage.
 - [ ] I updated the relevant documentation.
 - [ ] No secrets, tokens, or personal data are included.
 

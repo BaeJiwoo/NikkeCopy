@@ -47,3 +47,19 @@ body:
     attributes:
       label: Additional context
       description: Add related documents, issues, designs, or reference links.
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: List behavior or work that should not be included in this request.
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched for existing issues and feature requests.
+          required: true
+        - label: The requirements include verifiable acceptance criteria.
+          required: true

@@ -1,0 +1,75 @@
+name: Development task
+description: Register implementation, refactoring, documentation, or infrastructure work.
+title: "[Task] "
+labels:
+  - task
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Target area
+      options:
+        - Client
+        - Server
+        - Contracts
+        - Documentation
+        - Infrastructure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Task type
+      options:
+        - Implementation
+        - Refactoring
+        - Testing
+        - Documentation
+        - Infrastructure
+        - Maintenance
+    validations:
+      required: true
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: Describe the outcome this task should achieve.
+    validations:
+      required: true
+
+  - type: textarea
+    id: work_items
+    attributes:
+      label: Work items
+      description: Break the task into concrete implementation steps.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: List the conditions required to consider this task complete.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: List blocking issues, pull requests, assets, or external decisions. Write "None" if not applicable.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Technical notes
+      description: Add design decisions, constraints, reference links, or implementation notes.
+
