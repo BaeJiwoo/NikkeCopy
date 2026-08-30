@@ -4,6 +4,17 @@
 
 Application 계층에 정의된 인터페이스를 구현하며, Domain과 Application 계층은 Infrastructure의 구체적인 구현을 알지 않아야 합니다.
 
+설치, 연결 문자열, 마이그레이션 명령은 [EF Core 설정 문서](EFCORE_SETUP.md)를 참고합니다.
+
+## 현재 상태
+
+- EF Core 10과 MySQL 공급자 설치
+- `NikkeCopyDbContext` 구성
+- `PlayerConfiguration` 작성
+- `InitialCreate` 마이그레이션 생성
+- `AddInfrastructure` 확장 메서드로 DbContext 등록
+- Repository, 인증, Redis 및 외부 서비스는 미구현
+
 ## 디렉터리 구조
 
 필요한 기능만 단계적으로 추가합니다. 초기에는 `Persistence`, `Repositories`, `DependencyInjection.cs`만으로 시작해도 충분합니다.
@@ -13,23 +24,13 @@ NikkeCopy.Infrastructure/
 ├─ Persistence/
 │  ├─ NikkeCopyDbContext.cs
 │  ├─ Configurations/
-│  │  ├─ PlayerConfiguration.cs
-│  │  ├─ NikkeConfiguration.cs
-│  │  └─ InventoryItemConfiguration.cs
+│  │  └─ PlayerConfiguration.cs
 │  └─ Migrations/
-├─ Repositories/
-│  ├─ PlayerRepository.cs
-│  ├─ InventoryRepository.cs
-│  └─ SquadRepository.cs
-├─ Authentication/
-│  ├─ JwtTokenService.cs
-│  └─ PasswordHasher.cs
-├─ Caching/
-│  └─ RedisCacheService.cs
-├─ ExternalServices/
-│  └─ ExternalApiClient.cs
-└─ DependencyInjection.cs
+├─ DependencyInjection.cs
+└─ EFCORE_SETUP.md
 ```
+
+Repository, Authentication, Caching 및 ExternalServices 디렉터리는 해당 기능을 구현할 때 추가합니다.
 
 ## 구성요소 설명
 
@@ -137,6 +138,9 @@ NikkeCopy.Application → NikkeCopy.Domain
 - 로그인, 레벨업, 모집 같은 유스케이스: `NikkeCopy.Application`
 - Controller와 HTTP 요청·응답 DTO: `NikkeCopy.Api`
 
-## 현재 상태
+## 다음 작업
 
-현재는 외부 패키지나 데이터베이스가 연결되어 있지 않습니다. 영속성 요구사항과 스키마가 정해지면 EF Core와 MySQL 구현을 추가합니다.
+1. Application에 Repository 인터페이스를 선언합니다.
+2. Infrastructure에 EF Core Repository 구현을 추가합니다.
+3. 연결 문자열을 User Secrets 또는 환경변수로 분리합니다.
+4. DB 연결을 포함한 Health Check와 통합 테스트를 추가합니다.

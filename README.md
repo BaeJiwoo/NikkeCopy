@@ -2,18 +2,35 @@
 
 Unity + ASP.NET Core 기반 수집형 RPG 모작 프로젝트입니다. Client와 Server를 하나의 Git 저장소에서 관리합니다.
 
+## 현재 상태
+
+- Unity 클라이언트 기본 프로젝트와 공통 API 클라이언트 구성
+- ASP.NET Core 계층형 서버 골격 구성
+- Health API 구현
+- EF Core와 MySQL 공급자 구성
+- `Player` 엔티티와 최초 마이그레이션 작성
+- GitHub Actions 서버 빌드 구성
+
+현재 실제로 제공되는 API는 Health Check뿐입니다. 계정, 인증 및 게임 유스케이스 API는 문서화 단계이며 구현 예정입니다.
+
 ## Repository Structure
 
 ```text
 Client/       Unity 클라이언트
-Server/       ASP.NET Core 서버
-Contracts/    OpenAPI 및 향후 ProtoBuf 계약
-Docs/         아키텍처, API, 개발 문서
+Server/       ASP.NET Core 서버와 계층별 프로젝트
+Contracts/    OpenAPI 및 향후 Protocol Buffers 계약
+Docs/         아키텍처, API, 배포 및 유즈케이스 문서
 ```
 
-유즈케이스 문서는 [Docs/UseCases](Docs/UseCases/README.md)에서 확인할 수 있습니다.
+상세 안내:
 
-목표 배포 구성은 [Docs/Deployment.md](Docs/Deployment.md)에서 확인할 수 있습니다.
+- [서버 구조와 실행 안내](Server/README.md)
+- [Unity 클라이언트 안내](Client/README.md)
+- [유즈케이스 목록](Docs/UseCases/README.md)
+- [아키텍처](Docs/Architecture.md)
+- [API 현황](Docs/Api.md)
+- [목표 배포 구성](Docs/Deployment.md)
+- [EF Core 설정](Server/NikkeCopy.Infrastructure/EFCORE_SETUP.md)
 
 ## Server Requirements
 
@@ -21,11 +38,15 @@ Docs/         아키텍처, API, 개발 문서
 
 ## Server 실행 방법
 
+아래 명령은 저장소 루트에서 실행합니다.
+
 ```bash
 dotnet restore
 dotnet build
 dotnet run --project Server/NikkeCopy.Api --launch-profile http
 ```
+
+MySQL을 사용하는 기능을 실행하려면 `DefaultConnection` 설정과 MySQL 서버가 필요합니다. DB 비밀번호는 저장소의 설정 파일에 기록하지 말고 User Secrets 또는 환경변수로 관리합니다.
 
 ### VS Code
 
@@ -54,7 +75,7 @@ Unity 6 URP 프로젝트가 생성되어 있습니다. Network 계층의 `ApiCli
 
 서버 연결 확인용 `ServerHealthTest` 컴포넌트를 GameObject에 추가한 뒤 Play하면 Unity Console에서 Health API 응답을 확인할 수 있습니다.
 
-## Future Infrastructure
+## Infrastructure
 
 ### Docker
 
@@ -62,4 +83,6 @@ Unity 6 URP 프로젝트가 생성되어 있습니다. Network 계층의 `ApiCli
 
 ### MySQL / EF Core
 
-영속성 요구사항과 스키마가 정해진 뒤 Infrastructure 프로젝트에 EF Core와 MySQL 구현을 추가합니다. 현재 관련 패키지는 설치하지 않습니다.
+EF Core와 MySQL 공급자, `NikkeCopyDbContext`, `Player` 매핑 및 최초 마이그레이션이 구성되어 있습니다. Repository와 실제 데이터 API는 아직 구현되지 않았습니다.
+
+설치와 마이그레이션 절차는 [EF Core 설정 문서](Server/NikkeCopy.Infrastructure/EFCORE_SETUP.md)를 참고합니다.
