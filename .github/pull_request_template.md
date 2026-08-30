@@ -1,74 +1,74 @@
 ## Summary
 
-<!-- Describe what changed and why. -->
+<!-- What does this PR change? Keep the first sentence clear enough to understand from the PR list. -->
 
-- 
+## Why
 
-## Related issues
+<!-- Why is this change needed? Link the related issue if one exists, for example: Closes #25. -->
 
-<!-- Example: Closes #123, Relates to #123 -->
+## Type of change
 
-- 
+- [ ] Client gameplay, UI, input, or view navigation
+- [ ] Client networking or API integration
+- [ ] Server API, authentication, or application logic
+- [ ] Database, persistence, or migration
+- [ ] Shared contract or protocol
+- [ ] Assets, content, balancing, or tuning
+- [ ] Build, tooling, docs, or maintenance
 
-## Change type
+## Player-facing impact
 
-- [ ] Feature
-- [ ] Bug fix
-- [ ] Refactoring
-- [ ] Test
-- [ ] Documentation
-- [ ] Infrastructure or maintenance
+<!-- Describe changes to UI, controls, progression, balance, performance, or the player's experience. Use "None" if this is internal-only. -->
 
-## Affected areas
+## API and data impact
 
-- [ ] Client
-- [ ] Server
-- [ ] Contracts
-- [ ] Documentation
-- [ ] Infrastructure
+<!-- Fill in affected rows. Use "N/A" for rows that do not apply. -->
 
-## How to verify
+- API endpoints or contracts:
+- Authentication or authorization:
+- Database schema or migrations:
+- Save data or client preferences:
+- Backward compatibility:
 
-<!-- Provide the steps and expected result for reviewers. -->
+## Technical notes
 
-1. 
+<!-- Mention important implementation details, tradeoffs, migration notes, or reviewer focus areas. -->
 
-## Test results
+- Unity client impact:
+- ASP.NET Core server impact:
+- Infrastructure impact:
 
-<!-- List the commands, test cases, or manual checks performed and their results. -->
+## How was this tested?
 
-| Check | Result |
-| --- | --- |
-| Build | Not run |
-| Automated tests | Not run |
-| Manual verification | Not run |
+<!-- List commands, platforms, manual scenarios, and any intentionally skipped checks. -->
 
-## Compatibility and deployment
+- [ ] Unity scripts compiled successfully
+- [ ] .NET restore and build succeeded
+- [ ] Automated tests passed, or missing tests are explained below
+- [ ] Changed client behavior was manually tested
+- [ ] Client/server integration was checked, if affected
+- [ ] Authentication and authorization were checked, if affected
+- [ ] Database migrations were checked, if affected
+- [ ] Performance was considered for frequently executed or networked behavior
 
-- Breaking change: No
-- API contract changed: No
-- Database or migration changed: No
-- Configuration or secret changed: No
+Test details:
 
-<!-- Explain every "Yes" answer, including migration or deployment steps. -->
+```text
+<!-- Example:
+dotnet build
+dotnet test
+Manual: logged in through AuthView and verified navigation to MainView.
+-->
+```
+
+## Screenshots or recordings
+
+<!-- Add screenshots, GIFs, or short recordings for visual or gameplay changes. Use "N/A" for non-visual changes. -->
 
 ## Checklist
 
-- [ ] Relevant builds pass.
-- [ ] I ran or tested the changed behavior.
-- [ ] I checked the impact on existing functionality.
-- [ ] New or changed behavior has appropriate test coverage.
-- [ ] I updated the relevant documentation.
-- [ ] No secrets, tokens, or personal data are included.
-
-## Visual changes
-
-<!-- Add before/after screenshots or a video for UI changes. Write "None" when not applicable. -->
-
-None
-
-## Additional notes
-
-<!-- Note review concerns, known limitations, or follow-up work. -->
-
-None
+- [ ] Documentation or README changes were added, if needed
+- [ ] New dependencies, tools, assets, or configuration changes are documented
+- [ ] Generated files, local-only settings, secrets, and credentials were not introduced
+- [ ] Breaking changes, data migrations, or protocol changes are clearly described
+- [ ] Review notes are included for risky or non-obvious changes
