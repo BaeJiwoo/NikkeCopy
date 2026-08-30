@@ -30,6 +30,14 @@ dotnet run --project Server/NikkeCopy.Api --launch-profile http
 GET http://localhost:5000/api/health
 ```
 
+JWT 인증을 사용하려면 실행 전에 32자 이상의 비밀키를 환경변수 또는 User Secrets로 설정합니다.
+
+```powershell
+$env:Jwt__Secret = "replace-with-a-local-secret-at-least-32-characters"
+```
+
+구현된 인증 API는 계정 생성, 로그인, 현재 계정 확인이며 상세 요청 형식은 [API 문서](../Docs/Api.md)를 참고합니다.
+
 ## 데이터베이스
 
 EF Core와 MySQL이 Infrastructure에 구성되어 있습니다. 연결 문자열과 마이그레이션 설정은 [EF Core 설정 문서](NikkeCopy.Infrastructure/EFCORE_SETUP.md)를 참고합니다.
@@ -41,7 +49,9 @@ EF Core와 MySQL이 Infrastructure에 구성되어 있습니다. 연결 문자�
 - 서버 빌드 성공
 - Health API 구현
 - Player 엔티티와 최초 DB 마이그레이션 구성
-- Application 유스케이스, Repository 및 인증 API는 미구현
+- PBKDF2 비밀번호 해시와 JWT 인증 API 구성
+- 인증 계정 테이블 마이그레이션 구성
+- 나머지 Application 유스케이스와 게임 Repository는 미구현
 
 ## 관련 문서
 

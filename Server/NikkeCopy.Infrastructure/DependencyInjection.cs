@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NikkeCopy.Application.Authentication;
+using NikkeCopy.Infrastructure.Authentication;
 using NikkeCopy.Infrastructure.Persistence;
 
 namespace NikkeCopy.Infrastructure
@@ -16,9 +18,10 @@ namespace NikkeCopy.Infrastructure
                     "DefaultConnection is Missing");
 
             services.AddDbContext<NikkeCopyDbContext>(options => options.UseMySQL(connectionString));
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddSingleton<IPasswordHasher, Pbkdf2PasswordHasher>();
 
             return services;
         }
     }
 }
-

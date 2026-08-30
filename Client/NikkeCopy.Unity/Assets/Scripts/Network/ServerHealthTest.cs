@@ -7,7 +7,7 @@ namespace NikkeCopy.Client.Network
     {
         [SerializeField] private bool requestOnStart = true;
 
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly ApiClient _apiClient = ApiClient.Instance;
 
         private void Start()
         {

@@ -5,13 +5,15 @@ Unity + ASP.NET Core 기반 수집형 RPG 모작 프로젝트입니다. Client�
 ## 현재 상태
 
 - Unity 클라이언트 기본 프로젝트와 공통 API 클라이언트 구성
+- 반응형 로그인 UI와 JWT 클라이언트 인증 흐름 구성
 - ASP.NET Core 계층형 서버 골격 구성
 - Health API 구현
+- 계정 생성, 로그인 및 JWT 보호 API 구현
 - EF Core와 MySQL 공급자 구성
 - `Player` 엔티티와 최초 마이그레이션 작성
 - GitHub Actions 서버 빌드 구성
 
-현재 실제로 제공되는 API는 Health Check뿐입니다. 계정, 인증 및 게임 유스케이스 API는 문서화 단계이며 구현 예정입니다.
+현재 Health Check와 계정 생성, 로그인, 현재 인증 계정 확인 API를 제공합니다. 그 외 게임 유스케이스 API는 문서화 단계이며 구현 예정입니다.
 
 ## Repository Structure
 
@@ -25,7 +27,8 @@ Docs/         아키텍처, API, 배포 및 유즈케이스 문서
 상세 안내:
 
 - [서버 구조와 실행 안내](Server/README.md)
-- [Unity 클라이언트 안내](Client/README.md)
+- [Unity 클라이언트 안내](Client/NikkeCopy.Unity/Assets/README.md)
+- [클라이언트 View 내비게이션](Docs/ClientViewNavigation.md)
 - [유즈케이스 목록](Docs/UseCases/README.md)
 - [아키텍처](Docs/Architecture.md)
 - [API 현황](Docs/Api.md)

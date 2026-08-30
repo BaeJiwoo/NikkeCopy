@@ -1,6 +1,10 @@
 using System;
 using System.Collections;
 using System.Text;
+#if UNITY_EDITOR
+using System.Text.RegularExpressions;
+using UnityEngine;
+#endif
 using UnityEngine.Networking;
 
 namespace NikkeCopy.Client.Network
@@ -8,11 +12,12 @@ namespace NikkeCopy.Client.Network
     public sealed class ApiClient
     {
         public const string DefaultBaseUrl = "http://localhost:5000";
+        public static ApiClient Instance { get; } = new ApiClient(DefaultBaseUrl);
 
         private readonly string _baseUrl;
         private string _bearerToken;
 
-        public ApiClient(string baseUrl = DefaultBaseUrl)
+        private ApiClient(string baseUrl)
         {
             _baseUrl = baseUrl.TrimEnd('/');
         }
@@ -60,7 +65,24 @@ namespace NikkeCopy.Client.Network
                 request.SetRequestHeader("Authorization", $"Bearer {_bearerToken}");
             }
 
+#if UNITY_EDITOR
+            EditorApiLogger.LogRequest(
+                request.method,
+                request.url,
+                request.uploadHandler?.data == null
+                    ? null
+                    : Encoding.UTF8.GetString(request.uploadHandler.data));
+#endif
             yield return request.SendWebRequest();
+
+#if UNITY_EDITOR
+            EditorApiLogger.LogResponse(
+                request.method,
+                request.url,
+                request.responseCode,
+                request.downloadHandler?.text,
+                request.result);
+#endif
 
             if (request.result == UnityWebRequest.Result.Success)
             {
@@ -79,6 +101,54 @@ namespace NikkeCopy.Client.Network
             return $"{_baseUrl}/{path.TrimStart('/')}";
         }
     }
+
+#if UNITY_EDITOR
+    internal static class EditorApiLogger
+    {
+        private const string RequestColor = "#57D163";
+        private const string ResponseColor = "#FF9F43";
+        private static readonly Regex SensitiveJsonValue = new(
+            "\\\"(password|accessToken)\\\"\\s*:\\s*\\\"[^\\\"]*\\\"",
+            RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        public static void LogRequest(string method, string url, string body)
+        {
+            var message = $"<color={RequestColor}><b>[API REQUEST]</b></color> {method} {url}";
+            if (!string.IsNullOrWhiteSpace(body))
+            {
+                message += $"\n{Redact(body)}";
+            }
+
+            Debug.Log(message);
+        }
+
+        public static void LogResponse(
+            string method,
+            string url,
+            long statusCode,
+            string body,
+            UnityWebRequest.Result result)
+        {
+            var message = $"<color={ResponseColor}><b>[API RESPONSE]</b></color> " +
+                          $"{method} {url} → {statusCode} ({result})";
+            if (!string.IsNullOrWhiteSpace(body))
+            {
+                message += $"\n{Redact(body)}";
+            }
+
+            Debug.Log(message);
+        }
+
+        private static string Redact(string json)
+        {
+            return SensitiveJsonValue.Replace(json, match =>
+            {
+                var separator = match.Value.IndexOf(':');
+                return match.Value.Substring(0, separator + 1) + " \"***\"";
+            });
+        }
+    }
+#endif
 
     public sealed class ApiError
     {

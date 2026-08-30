@@ -13,7 +13,8 @@ Application 계층에 정의된 인터페이스를 구현하며, Domain과 Appli
 - `PlayerConfiguration` 작성
 - `InitialCreate` 마이그레이션 생성
 - `AddInfrastructure` 확장 메서드로 DbContext 등록
-- Repository, 인증, Redis 및 외부 서비스는 미구현
+- 인증 계정 Repository와 PBKDF2 비밀번호 해시 구현
+- 게임 Repository, Redis 및 외부 서비스는 미구현
 
 ## 디렉터리 구조
 
