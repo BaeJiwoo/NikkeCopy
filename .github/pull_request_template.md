@@ -1,16 +1,16 @@
-## 변경 내용
+## Summary
 
-<!-- 무엇을 왜 변경했는지 작성해주세요. -->
-
-- 
-
-## 관련 Issue
-
-<!-- 예: Closes #123, Relates to #123 -->
+<!-- Describe what changed and why. -->
 
 - 
 
-## 영향 범위
+## Related issues
+
+<!-- Example: Closes #123, Relates to #123 -->
+
+- 
+
+## Affected areas
 
 - [ ] Client
 - [ ] Server
@@ -18,28 +18,28 @@
 - [ ] Documentation
 - [ ] Infrastructure
 
-## 확인 방법
+## How to verify
 
-<!-- 리뷰어가 변경 사항을 확인할 수 있는 절차와 결과를 작성해주세요. -->
+<!-- Provide the steps and expected result for reviewers. -->
 
 1. 
 
-## 검증
+## Checklist
 
-- [ ] 관련 빌드가 성공했습니다.
-- [ ] 변경 사항을 직접 실행하거나 테스트했습니다.
-- [ ] 기존 기능에 미치는 영향을 확인했습니다.
-- [ ] 필요한 문서를 갱신했습니다.
-- [ ] 비밀키, 토큰, 개인정보가 포함되지 않았습니다.
+- [ ] Relevant builds pass.
+- [ ] I ran or tested the changed behavior.
+- [ ] I checked the impact on existing functionality.
+- [ ] I updated the relevant documentation.
+- [ ] No secrets, tokens, or personal data are included.
 
-## 화면 변경
+## Visual changes
 
-<!-- UI 변경이 있다면 전후 스크린샷 또는 영상을 첨부하고, 없다면 '없음'으로 작성해주세요. -->
+<!-- Add before/after screenshots or a video for UI changes. Write "None" when not applicable. -->
 
-없음
+None
 
-## 추가 사항
+## Additional notes
 
-<!-- 리뷰 시 특히 확인해야 할 부분, 알려진 제약, 후속 작업을 작성해주세요. -->
+<!-- Note review concerns, known limitations, or follow-up work. -->
 
-없음
+None

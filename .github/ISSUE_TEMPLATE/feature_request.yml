@@ -1,5 +1,5 @@
-name: 기능 요청
-description: 새로운 기능이나 개선 사항을 제안합니다.
+name: Feature request
+description: Suggest a new feature or improvement.
 title: "[Feature] "
 labels:
   - enhancement
@@ -7,7 +7,7 @@ body:
   - type: dropdown
     id: area
     attributes:
-      label: 대상 영역
+      label: Target area
       options:
         - Client
         - Server
@@ -20,16 +20,16 @@ body:
   - type: textarea
     id: purpose
     attributes:
-      label: 목적
-      description: 해결하려는 문제와 필요한 이유를 작성해주세요.
+      label: Motivation
+      description: Describe the problem to solve and why this change is needed.
     validations:
       required: true
 
   - type: textarea
     id: requirements
     attributes:
-      label: 요구사항
-      description: 완료 조건을 확인할 수 있는 항목으로 작성해주세요.
+      label: Requirements
+      description: Describe measurable acceptance criteria.
       placeholder: |
         - [ ] ...
         - [ ] ...
@@ -39,12 +39,11 @@ body:
   - type: textarea
     id: proposal
     attributes:
-      label: 제안 구현
-      description: 예상 동작, UI 흐름 또는 API 형태가 있다면 작성해주세요.
+      label: Proposed solution
+      description: Describe the expected behavior, UI flow, or API design if applicable.
 
   - type: textarea
     id: related
     attributes:
-      label: 관련 자료
-      description: 관련 문서, Issue, 디자인 또는 참고 링크를 첨부해주세요.
-
+      label: Additional context
+      description: Add related documents, issues, designs, or reference links.
