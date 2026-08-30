@@ -1,5 +1,7 @@
 # 클라이언트 View 내비게이션
 
+새로운 화면을 추가하는 전체 절차는 [클라이언트 View 생성 가이드라인](ClientViewCreation.md)을 따른다.
+
 ## 결정
 
 클라이언트의 일반 화면 전환은 Scene 전환이 아니라 단일 Canvas 내부 View GameObject의 활성 상태로 관리한다. View 간 허용 경로는 `ViewGraph` ScriptableObject에 방향 그래프로 기록한다.

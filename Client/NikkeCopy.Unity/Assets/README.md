@@ -76,7 +76,7 @@ dotnet run --project Server/NikkeCopy.Api --launch-profile http
 - `ViewPrefab`: 프리팹 루트와 `ViewKey` 연결
 - Scene View Binding: `ViewKey → 프리팹 인스턴스` 연결
 
-그래프 에셋은 `Assets/Settings/ClientViewGraph.asset`에서 관리합니다. 에셋 Inspector의 `Views`에 View 프리팹을 등록하고 `Transitions`에 `From + Navigation → To` 규칙을 정의합니다. `Sync Canvas`를 누르면 현재 Scene의 `ViewRoot` 아래 프리팹 인스턴스와 `ViewNavigator` 바인딩이 그래프에 맞게 갱신됩니다. 설정 절차와 검증 규칙은 [클라이언트 View 내비게이션 문서](../../../../Docs/ClientViewNavigation.md)를 참고합니다.
+그래프 에셋은 `Assets/Settings/ClientViewGraph.asset`에서 관리합니다. 에셋 Inspector의 `Views`에 View 프리팹을 등록하고 `Transitions`에 `From + Navigation → To` 규칙을 정의합니다. `Sync Canvas`를 누르면 현재 Scene의 `ViewRoot` 아래 프리팹 인스턴스와 `ViewNavigator` 바인딩이 그래프에 맞게 갱신됩니다. 새 화면을 만드는 절차는 [View 생성 가이드라인](../../../Docs/ClientViewCreation.md), 전환 구조와 검증 규칙은 [클라이언트 View 내비게이션 문서](../../../Docs/ClientViewNavigation.md)를 참고합니다.
 
 ## API 디버깅 로그
 
@@ -102,4 +102,4 @@ Unity Editor에서 실행할 때만 모든 `ApiClient` 요청과 응답을 Conso
 - 에디터 전용 API 요청 및 응답 로그 구성
 - 인증 및 게임 기능 API 연동은 서버 API 구현 후 추가 예정
 
-API 계약은 [OpenAPI 디렉터리](../../../../Contracts/OpenAPI/README.md), 서버 실행 방법은 [서버 README](../../../../Server/README.md)를 참고합니다.
+API 계약은 [OpenAPI 디렉터리](../../../Contracts/OpenAPI/README.md), 서버 실행 방법은 [서버 README](../../../Server/README.md)를 참고합니다.

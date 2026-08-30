@@ -29,6 +29,7 @@ Docs/         아키텍처, API, 배포 및 유즈케이스 문서
 - [서버 구조와 실행 안내](Server/README.md)
 - [Unity 클라이언트 안내](Client/NikkeCopy.Unity/Assets/README.md)
 - [클라이언트 View 내비게이션](Docs/ClientViewNavigation.md)
+- [클라이언트 View 생성 가이드라인](Docs/ClientViewCreation.md)
 - [유즈케이스 목록](Docs/UseCases/README.md)
 - [아키텍처](Docs/Architecture.md)
 - [API 현황](Docs/Api.md)
