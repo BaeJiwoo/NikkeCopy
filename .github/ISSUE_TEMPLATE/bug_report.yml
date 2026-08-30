@@ -1,0 +1,71 @@
+name: 버그 제보
+description: 재현 가능한 오류나 예상과 다른 동작을 등록합니다.
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: 영향 영역
+      options:
+        - Client
+        - Server
+        - Contracts
+        - Documentation
+        - Infrastructure
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 문제 설명
+      description: 어떤 문제가 발생했는지 간결하게 작성해주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 재현 절차
+      description: 문제를 다시 발생시킬 수 있도록 순서대로 작성해주세요.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대 결과
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 실제 결과
+      description: 오류 메시지나 로그가 있다면 민감 정보를 제거하고 첨부해주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 실행 환경
+      placeholder: |
+        - OS:
+        - Unity 또는 .NET 버전:
+        - 브랜치/커밋:
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: 추가 자료
+      description: 스크린샷, 영상, 관련 Issue 등의 자료를 첨부해주세요.
+
