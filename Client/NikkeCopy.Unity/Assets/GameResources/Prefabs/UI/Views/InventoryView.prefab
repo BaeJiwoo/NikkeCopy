@@ -369,6 +369,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3950870876793126869}
   - component: {fileID: 887010000000000003}
+  - component: {fileID: 887020000000000003}
+  - component: {fileID: 887030000000000003}
   m_Layer: 0
   m_Name: InventoryView
   m_TagString: Untagged
@@ -388,7 +390,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f27dd29e5548429556123771da96a2, type: 3}
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryView
-  transition: {fileID: 0}
+  transition: {fileID: 887020000000000003}
+--- !u!114 &887020000000000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207324577119469310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d95031d8a2f4b2583fb24efed1293a2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasGroupFadeTransition
+  enterDuration: 0.2
+  exitDuration: 0.15
+--- !u!225 &887030000000000003
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207324577119469310}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &3950870876793126869
 RectTransform:
   m_ObjectHideFlags: 0
