@@ -450,84 +450,6 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_ShouldActivateOnSelect: 1
---- !u!1 &2497936224535400348
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2529244073105808357}
-  - component: {fileID: 1080445769253409375}
-  - component: {fileID: 1002931770526447498}
-  - component: {fileID: 6212533887898748052}
-  m_Layer: 0
-  m_Name: AuthFeature
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2529244073105808357
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2497936224535400348}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 875273966775495566}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1080445769253409375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2497936224535400348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7077e32d0dae31b4bb0618d754833d21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NikkeCopy.Client.MVC.Models.AuthModel
---- !u!114 &1002931770526447498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2497936224535400348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d56db0a7fea92af44bc34609fef1648c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NikkeCopy.Client.MVC.Views.AuthView
-  usernameInput: {fileID: 0}
-  passwordInput: {fileID: 0}
-  loginButton: {fileID: 0}
-  registerButton: {fileID: 0}
-  statusText: {fileID: 0}
---- !u!114 &6212533887898748052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2497936224535400348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55511a861bddadc4cbc5d390b9227d84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NikkeCopy.Client.MVC.Controllers.AuthController
-  model: {fileID: 0}
-  view: {fileID: 0}
-  navigator: {fileID: 0}
 --- !u!1 &2611018496264532139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,14 +1336,27 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875273966775495566}
-  - component: {fileID: 8482844317274564319}
+  - component: {fileID: 887010000000000001}
   m_Layer: 0
   m_Name: AuthView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
+--- !u!114 &887010000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9097475587697874632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56db0a7fea92af44bc34609fef1648c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::AuthView
+  transition: {fileID: 0}
 --- !u!224 &875273966775495566
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1435,7 +1370,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2038066250063156924}
-  - {fileID: 2529244073105808357}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1443,16 +1377,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8482844317274564319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9097475587697874632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8099efe6b9dea644ca7c97fe72760b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NikkeCopy.Client.MVC.Navigation.ViewPrefab
-  key: 1

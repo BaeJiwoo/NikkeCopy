@@ -21,9 +21,8 @@ Assets/
 └─ Scripts/
    ├─ MVC/
    │  ├─ Models/           화면 상태와 도메인 데이터
-   │  ├─ Views/            화면 표시와 사용자 입력 전달
+   │  ├─ Views/            BaseView와 현재/직전 View 관리
    │  ├─ Controllers/      입력 처리와 Model/View 조정
-   │  └─ Navigation/       키 기반 View 전환
    ├─ Network/
    │  ├─ ApiClient.cs
    │  ├─ Auth/
@@ -36,7 +35,7 @@ Assets/
    └─ Common/
 ```
 
-화면 로직은 `View → Controller → Model` 흐름을 따릅니다. Controller가 사용자 입력과 화면 전환을 조정하고, Model이 상태 및 Network 계층과의 통신을 담당합니다. View는 Network 계층을 직접 참조하지 않습니다.
+화면 로직은 `View → Controller → Model` 흐름을 따릅니다. View는 `BaseView`를 상속하고, `ViewManager`가 현재 View와 직전 View 및 비동기 진입·이탈을 관리합니다. Controller가 사용자 입력과 화면 전환을 조정하고, Model이 상태 및 Network 계층과의 통신을 담당합니다. View는 Network 계층을 직접 참조하지 않습니다.
 
 서버 통신은 `Model → XxxApi → ApiClient.Instance → ASP.NET Core` 흐름을 따릅니다. `ApiClient`는 게임 세션 전체에서 하나만 존재하는 공유 인스턴스이며 모든 API 계층이 이를 참조합니다. 기본 서버 주소는 `http://localhost:5000`이고 GET, JSON POST, 공통 오류 처리와 Bearer Token 관리를 제공합니다.
 
@@ -54,7 +53,7 @@ dotnet run --project Server/NikkeCopy.Api --launch-profile http
 
 ## 인증 화면
 
-`Assets/Scenes/AuthScene.unity`에 로그인 UI가 미리 배치되어 있으며 첫 번째 Build Scene으로 등록되어 있습니다. 런타임에 UI 오브젝트를 생성하지 않습니다.
+인증 UI는 `Assets/GameResources/Prefabs/UI/Views/AuthView.prefab`으로 관리합니다. 기존 `AuthScene.unity`에는 삭제된 View 전환 컴포넌트의 직렬화 흔적이 남아 있어 정리가 필요합니다.
 
 - `CanvasScaler`: `Scale With Screen Size`, 기준 해상도 `1920x1080`
 - 중앙 앵커 기반 로그인 패널
@@ -62,21 +61,24 @@ dotnet run --project Server/NikkeCopy.Api --launch-profile http
 - 로그인 및 회원가입 버튼
 - 인증 진행 및 오류 상태 표시
 
-로그인에 성공하면 JWT Access Token을 `PlayerPrefs`에 저장하고 이후 `ApiClient` 요청의 Bearer Token으로 사용합니다. 운영 단계에서는 플랫폼 보안 저장소로 교체해야 합니다.
+`AuthModel`은 로그인에 성공하면 JWT Access Token을 `PlayerPrefs`에 저장하고 이후 `ApiClient.Instance` 요청의 Bearer Token으로 사용하도록 구성되어 있습니다. 현재 인증 View와 Controller 연결은 새 ViewManager 구조에 맞춰 다시 구성해야 합니다. 운영 단계에서는 토큰 저장소를 플랫폼 보안 저장소로 교체해야 합니다.
 
-로그인과 메인 화면은 같은 Scene과 Canvas 안의 `AuthView`, `MainView` 오브젝트로 구성됩니다. 화면 전환 시 Scene을 다시 로드하지 않고 대상 View만 활성화합니다.
+### View 관리
 
-### View 전환 그래프
+기존 ViewGraph와 키 기반 전환 시스템은 삭제되었습니다. 현재는 다음 구조로 교체 중입니다.
 
-- `ViewKey`: View Node를 구분하는 enum
-- `NavigationKey`: 문자열이 아닌 방향 Edge 키
-- `ViewGraph`: 시작 View와 `From + NavigationKey → To` Edge를 관리하는 ScriptableObject
-- `ViewNavigator`: 현재 View에서 허용된 Edge를 찾아 View GameObject 활성 상태 변경
-- `ViewNavigationButton`: 버튼에 고유 키를 할당하고 클릭 이벤트를 네비게이터에 전달
-- `ViewPrefab`: 프리팹 루트와 `ViewKey` 연결
-- Scene View Binding: `ViewKey → 프리팹 인스턴스` 연결
+- `BaseView`: View의 비동기 `EnterAsync`, `ExitAsync` 생명주기와 데이터 바인딩 지점
+- `ViewManager`: 단일 인스턴스에서 현재 View와 직전 View를 관리
+- `raycastBlocker`: 비동기 화면 전환 중 중복 입력 차단
+- UniTask: View 전환과 선행 작업의 비동기 실행
 
-그래프 에셋은 `Assets/Settings/ClientViewGraph.asset`에서 관리합니다. 에셋 Inspector의 `Views`에 View 프리팹을 등록하고 `Transitions`에 `From + Navigation → To` 규칙을 정의합니다. `Sync Canvas`를 누르면 현재 Scene의 `ViewRoot` 아래 프리팹 인스턴스와 `ViewNavigator` 바인딩이 그래프에 맞게 갱신됩니다. 새 화면을 만드는 절차는 [View 생성 가이드라인](../../../Docs/ClientViewCreation.md), 전환 구조와 검증 규칙은 [클라이언트 View 내비게이션 문서](../../../Docs/ClientViewNavigation.md)를 참고합니다.
+`ViewManager.View Prefabs` 목록이 이동 가능한 View를 모두 소유합니다. 일반 버튼은 `ViewPushButton.Target View`에 목록에 등록된 프리팹을 수동으로 할당하며, 개별 View 클래스에는 목적지별 이동 메서드를 두지 않습니다. 선택적인 UniTask 선행 작업이 실패하면 기존 View를 유지합니다. `PopAsync()`와 `BackViewButton`은 이전 View로 돌아가고, `ViewTransition` 파생 컴포넌트로 화면별 진입·이탈 애니메이션을 지정할 수 있습니다. 새 화면 제작 규칙은 [View 생성 가이드라인](../../../Docs/ClientViewCreation.md), 설정과 사용법은 [클라이언트 View 관리 문서](../../../Docs/ClientViewNavigation.md)를 참고합니다.
+
+버튼의 대상이 현재 View와 같거나 `Target View`가 비어 있으면 `ViewPushButton`이 Button을 자동으로 비활성화합니다. 코드에서 같은 View로 직접 Push를 요청해도 ViewManager가 선행 작업과 전환을 시작하지 않습니다.
+
+각 View는 `Created → Entered → Exited → Released` 라이프사이클을 가집니다. `Reuse Mode`가 `Reuse`이면 인스턴스를 캐시해 `Entered ↔ Exited`를 반복하고, `Recreate`이면 Pop할 때 `Released` 후 파괴하여 다음 진입에서 새로 생성합니다.
+
+`ViewManager`의 `Enable Logging`을 활성화하면 Push/Pop, 비동기 선행 작업, 인스턴스 생성과 라이프사이클 상태가 파란색 `[VIEW]` 로그로 Unity Console에 출력됩니다. 전환 실패와 예외는 이 설정과 관계없이 항상 출력됩니다.
 
 ## API 디버깅 로그
 
@@ -97,8 +99,9 @@ Unity Editor에서 실행할 때만 모든 `ApiClient` 요청과 응답을 Conso
 - MVC 기반 화면 관리 디렉터리 구성
 - 반응형 Canvas 기반 로그인 및 회원가입 화면 구성
 - JWT Access Token 저장 및 Bearer 인증 연결
-- 로그인 성공 후 메인 화면 전환
-- View 프리팹과 Inspector 기반 화면 연결
+- BaseView 및 ViewManager 기반 단일 단계 화면 관리
+- 비동기 선행 작업, 실패 유지, 전환 애니메이션과 뒤로 가기 지원
+- Auth, Main, Inventory, NikkeManagement, Recruitment, Squad View 프리팹 구성
 - 에디터 전용 API 요청 및 응답 로그 구성
 - 인증 및 게임 기능 API 연동은 서버 API 구현 후 추가 예정
 

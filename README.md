@@ -5,7 +5,8 @@ Unity + ASP.NET Core 기반 수집형 RPG 모작 프로젝트입니다. Client�
 ## 현재 상태
 
 - Unity 클라이언트 기본 프로젝트와 공통 API 클라이언트 구성
-- 반응형 로그인 UI와 JWT 클라이언트 인증 흐름 구성
+- 인증 View 프리팹, AuthModel과 JWT API 클라이언트 구성
+- BaseView와 ViewManager 기반 현재/직전 화면 관리
 - ASP.NET Core 계층형 서버 골격 구성
 - Health API 구현
 - 계정 생성, 로그인 및 JWT 보호 API 구현
@@ -28,7 +29,7 @@ Docs/         아키텍처, API, 배포 및 유즈케이스 문서
 
 - [서버 구조와 실행 안내](Server/README.md)
 - [Unity 클라이언트 안내](Client/NikkeCopy.Unity/Assets/README.md)
-- [클라이언트 View 내비게이션](Docs/ClientViewNavigation.md)
+- [클라이언트 View 관리 현황](Docs/ClientViewNavigation.md)
 - [클라이언트 View 생성 가이드라인](Docs/ClientViewCreation.md)
 - [유즈케이스 목록](Docs/UseCases/README.md)
 - [아키텍처](Docs/Architecture.md)

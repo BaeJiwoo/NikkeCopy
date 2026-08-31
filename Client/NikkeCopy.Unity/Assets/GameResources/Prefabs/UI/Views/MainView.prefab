@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6080080720575954256}
-  - component: {fileID: 5524393145730898608}
+  - component: {fileID: 887010000000000002}
   m_Layer: 0
   m_Name: MainView
   m_TagString: Untagged
@@ -39,7 +39,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5524393145730898608
+--- !u!114 &887010000000000002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,10 +48,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3943811818408961299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8099efe6b9dea644ca7c97fe72760b2e, type: 3}
+  m_Script: {fileID: 11500000, guid: a4a94df4be8749af98fc8de3152844b1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NikkeCopy.Client.MVC.Navigation.ViewPrefab
-  key: 2
+  m_EditorClassIdentifier: Assembly-CSharp::MainView
+  transition: {fileID: 0}
 --- !u!1 &4080260773047983664
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,14 +222,13 @@ GameObject:
   - component: {fileID: 4935116293710957973}
   - component: {fileID: 3779403689414741932}
   - component: {fileID: 1043744461228300977}
-  - component: {fileID: 1911788774252385680}
   m_Layer: 0
   m_Name: AuthViewButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2839252578085816897
 RectTransform:
   m_ObjectHideFlags: 0
@@ -332,21 +331,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1911788774252385680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6731543391586835246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a925f1bde468a4996c3b5517ab0c07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NikkeCopy.Client.MVC.Navigation.ViewNavigationButton
-  buttonKey: 1
-  navigator: {fileID: 0}
-  button: {fileID: 1043744461228300977}
 --- !u!1 &9223107989994231557
 GameObject:
   m_ObjectHideFlags: 0
